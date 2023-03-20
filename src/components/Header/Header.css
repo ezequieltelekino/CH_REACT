@@ -1,0 +1,22 @@
+body{
+background-color: lightskyblue;
+
+}
+.Header h1{
+    color:grey;
+}  /* el h1 no está más en el header, el profe lo mandó a NavBar */
+.Header h2{
+    color:rgba(0, 0, 0, 0.658);
+    padding: 1rem ;
+    font-size: 2rem;
+    background-color: rgba(136, 136, 136, 0.74);
+    margin-block-end: 0px;
+    margin-block-start:0px;
+}
+
+.Header{
+    margin: 0px;
+    padding: 0px;
+    border: 0px;
+    border-color:beige;
+}
