@@ -1,7 +1,7 @@
 import "./NavBar.css"
 import Shop from "../Shop/Shop"
 
-const  NavBar = ({brand}) => {
+const  NavBar = ({brand, numero, incrementar, decrementar}) => {
   return (
     <nav>
         <ul>
@@ -10,7 +10,7 @@ const  NavBar = ({brand}) => {
             <li><a>Acerca de nosotros</a></li>
             <li><a>Productos</a></li>
             <li><a>Contacto</a></li>
-            <li><Shop /></li>
+            <li><Shop numero={numero} incrementar={incrementar} decrementar={decrementar}/></li>
         </ul>
     </nav>
     
