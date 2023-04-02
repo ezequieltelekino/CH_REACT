@@ -19,13 +19,14 @@ export let nombre = "Ezequiel";
 
 function App() { 
 
+  // funció básica, sincrónica.
   function incrementar(){
     setNumber(number+1)
     console.log("incrementando: "+ number)
     
   }
 
-  //está función flecha - dejando de lado que resta- es equivalente a la función incrementar
+  // está función flecha - dejando de lado que resta- es equivalente a la función incrementar. Además, la hago asincrónica.
   const decrementar = () => {
     console.log("Decrementando (esperar dos segundos para que impacte)")
     return new Promise ((resolve, rejected) => {
@@ -35,6 +36,14 @@ function App() {
     });
   };
 
+
+  const inicializar = () => {
+    console.log ("inicializando... le pego a jsonplaceholder, para probar la sintaxis");
+    fetch('https://jsonplaceholder.typicode.com/todos/1')
+    .then(response => response.json())
+    .then(json => console.log("Terminada la descarga, inicializo", setNumber(number => 0)))
+
+  }
     const [number, setNumber] = useState(0)  
     // inicializo la variable number, que se accede por un hook. setNumber es una función que declaro para setearlo, pero podría ser cualquier cosa.
 
@@ -47,7 +56,7 @@ function App() {
 
     return (
       <div className="App">  
-        <NavBar numero={number} decrementar={decrementar} incrementar={incrementar} brand="AbajomojabA"/>   
+        <NavBar numero={number} decrementar={decrementar} incrementar={incrementar} inicializar={inicializar} brand="AbajomojabA"/>   
         <Header title="Abajo Mojaba" subtitle="Abajo Mojaba - Piletas de lona"/>
         <Landing image={pileta} texto="logo-pileta" />
 
