@@ -41,7 +41,7 @@ function App() {
     console.log ("inicializando... le pego a jsonplaceholder, para probar la sintaxis");
     fetch('https://jsonplaceholder.typicode.com/todos/1')
     .then(response => response.json())
-    .then(json => console.log("Terminada la descarga, inicializo", setNumber(number => 0)))
+    .then(json => console.log("Terminada la descarga, inicializo"), setNumber(number => 0))
 
   }
     const [number, setNumber] = useState(0)  
