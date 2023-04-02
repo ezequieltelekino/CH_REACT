@@ -20,16 +20,30 @@ export let nombre = "Ezequiel";
 function App() { 
 
   function incrementar(){
-    setNumber(number+1);
+    setNumber(number+1)
+    console.log("incrementando: "+ number)
+    
   }
 
   //está función flecha - dejando de lado que resta- es equivalente a la función incrementar
   const decrementar = () => {
-    setNumber((number => number -1));
-  }
+    console.log("Decrementando (esperar dos segundos para que impacte)")
+    return new Promise ((resolve, rejected) => {
+      setTimeout(() => {
+        resolve (setNumber(number => number -1));
+      }, 2000); // decrementa después de dos segundos   
+    });
+  };
 
     const [number, setNumber] = useState(0)  
     // inicializo la variable number, que se accede por un hook. setNumber es una función que declaro para setearlo, pero podría ser cualquier cosa.
+
+    // useEffect se va a ejecutar cada vez que modifique la variable "number"
+  useEffect(() => {
+    setTimeout(() => {
+      console.log("Corriendo useEffect (handleando cambios en number) ");
+    },100);    
+  },[number]);  
 
     return (
       <div className="App">  
