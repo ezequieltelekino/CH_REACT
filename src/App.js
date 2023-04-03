@@ -1,22 +1,60 @@
 import pileta from  "./components/Landing/img/pileta.jpg"
-//'components/Landing/img/pileta.jpg';
+
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+
+import NavBar from "./components/NavBar/NavBar";
+import Home from "./pages/Home";
+import Contact from "./pages/Contact";
+import About from "./pages/About";
+import UserDetail from "./pages/UserDetail"
+
+
 import './App.css';
 import {useState, useEffect} from 'react';
 import React, {Component} from 'react';
 
 // Importo mis componentes
 import Header from "./components/Header/Header";
-import NavBar from './components/NavBar/NavBar';
 import Landing from './components/Landing/Landing';
+import CardList from './components/CardList/CardList';
 
-export let nombre = "Ezequiel";
+
+const App = () => {
+
+    const [number, setNumber] = useState(0)  
+    // inicializo la variable number, que se accede por un hook. setNumber es una función que declaro para setearlo, pero podría ser cualquier cosa.
+
+
+
+  return (
+    <Router>
+      <div className="App">
+        <NavBar numero={number} brand="AbajomojabA" />
+        <Header title="Abajo Mojaba" subtitle="Abajo Mojaba - Piletas de lona"/>
+
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/about" element={<About />} />
+          <Route path="user-detail/:id" element={<UserDetail />} />          
+        </Routes>
+      </div>
+
+    </Router>
+  );
+};
+export default App;
+
+
+
 
 // Machete interno
 // necesito una clase que herede de react.component (clase "componentes 1")
 // Ahora, en la clase "componentes 2", usan componentes basados en funciones.
 // En la corrección, el tutor me indicó que use estos últimos (pero no habíamos visto nada... cuac!)
 // así que reemplazo "class App extendes Component"   por "funcion App()", y le quito el render, sólo dejo el return.
-
+/*
 function App() { 
 
   // funció básica, sincrónica.
@@ -63,5 +101,7 @@ function App() {
       </div>
     );//<!-- ¿es correcto que esto esté en el nav y no en el header? -->
   };
+*/
 
-export default App;
+
+      

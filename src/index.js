@@ -3,8 +3,32 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import {nombre} from "./App"
-console.log(nombre);
+/*
+
+const items = [
+  {color: "Azul", precio: 100},
+  {color: "Verde", precio: 200},
+  {color: "Rojo", precio: 300},
+  {color: "Naranja", precio: 400}
+];
+
+// muestro estos items con un for tradicional
+console.log("Con un for tradicional");
+for ( var item in items){
+  console.log ("Leyendo " + items[item].color + " " + items[item].precio);
+}
+
+console.log("desde un map")
+let listaDeItems = items.map(function (item){
+  return item.color + " " + item.precio;  
+});
+console.log (listaDeItems);
+
+console.log("desde un map, con arrow")
+let listaDeItems2 = items.map( (item) => item.color + " " + item.precio);
+console.log (listaDeItems2);
+
+*/
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
