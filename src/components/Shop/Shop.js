@@ -1,13 +1,22 @@
 import React from "react"
 import ShoppingCartCheckoutIcon from '@mui/icons-material/ShoppingCartCheckout';
 import "./Shop.css"
-const  Shop = ({numero, incrementar, decrementar, inicializar}) => {
+import { useContext } from "react";
+import { Contexto } from "../../App";
+
+const  Shop = () => {
+  let contexto = useContext(Contexto)
+  let cantidadDeArticulosEnElCarrito = 0
+  cantidadDeArticulosEnElCarrito = contexto[1].carrito.length
+ 
+ // console.log("casd", contexto)
   return (
     <div>
         <ShoppingCartCheckoutIcon sx={{color: "white"}}/>
-        <span>{numero} </span>
+        <span>{cantidadDeArticulosEnElCarrito} </span>
+      
+
     </div>
-    
   );
 };
 

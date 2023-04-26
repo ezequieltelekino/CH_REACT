@@ -1,30 +1,43 @@
 import React, {useEffect, useState } from "react";
-import axios from "axios";
 import CardUser from "../CardUser/CardUser";
 import { Link } from "react-router-dom";
-
+import { useContext } from "react";
+import { Contexto } from "../../App";
   
 import "./CardListComponent.css";
 
 const CardList = () => {
+    const contenidoDelContexto = useContext(Contexto );
+    let prods = contenidoDelContexto[0].productos 
+    let listaSinDuplicados = []
+    
+    prods.map((producto) => {
 
-    const [users, setUsers] = useState([])
-    useEffect(() => {
-        axios("https://jsonplaceholder.typicode.com/users").then((res) =>
-            setUsers(res.data)
-            );
-    },[]);
+        //por algún motivo que desconozco, aparecen duplicados todos los registros... así que antes de mostrarlos, los filtro.
+        let yaEstaba=false
+        listaSinDuplicados.forEach((sd) =>{
+            if (sd.id == producto.id)
+                yaEstaba = true
+        })
+        if (!yaEstaba)  {
+            listaSinDuplicados.push(producto)
+        }
+    })
+    
     return (
         <div className="Cards-List">
-            {users.map((user) => {
-                return(
-                    <div key={user.id}>
-                        <Link to={`/user-detail/${user.id}`}>
-                            <CardUser key={user.id} data={user}/>
-                        </Link>
-                    </div>
-            );
-            })} 
+            {
+            listaSinDuplicados.map((producto) => {
+                    return (
+                        <div key={producto.id}>
+                            <Link to={`/user-detail/${producto.id}`}>
+                                <CardUser key={producto.id} data={producto}/>
+                            </Link>
+                        </div>
+                    );
+                }
+            ) 
+            }
         </div>
     );
 };

@@ -3,7 +3,8 @@ import Shop from "../Shop/Shop"
 
 import { Link } from "react-router-dom";
 
-const NavBar = ({brand, numero}) => {
+const NavBar = ({brand}) => {
+  //setNumber(numero+1)
   return (
     <nav className="Navigation">
       <ul className="List-ul">
@@ -17,7 +18,7 @@ const NavBar = ({brand, numero}) => {
         <Link className="Link" to="/contact">
           Contact
         </Link>
-        <li><Shop numero={numero} /></li>
+        <li><Shop/></li>
       </ul>
     </nav>
   );

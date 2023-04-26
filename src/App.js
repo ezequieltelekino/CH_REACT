@@ -1,7 +1,6 @@
-import pileta from  "./components/Landing/img/pileta.jpg"
-
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 
 import NavBar from "./components/NavBar/NavBar";
 import Home from "./pages/Home";
@@ -11,7 +10,6 @@ import UserDetail from "./pages/UserDetail"
 
 
 import './App.css';
-import {useState, useEffect} from 'react';
 import React, {Component} from 'react';
 
 // Importo mis componentes
@@ -20,28 +18,64 @@ import Landing from './components/Landing/Landing';
 import CardList from './components/CardList/CardList';
 
 
+
+//firebase
+import { db } from "./firebase/firebaseConfig";
+import { collection, query, where, getDocs } from "firebase/firestore";
+import { createContext, useState } from "react";
+
+
+// context
+// 1) crear el contexto con el hook createContext
+// 2) crear el componente provider
+// 3) retornar el contexto con .provider
+// 4) props.childer o children
+let yaPasePorAqui = 0
+export const Contexto = createContext("valor inicial del provider, no debería verse en ningún lugar porque todo está dentro del context");
+
 const App = () => {
+      
+    const [productos, setProductos] = useState([])
+    const [carrito, setCarrito] = useState([])
+    let docs = [];
 
-    const [number, setNumber] = useState(0)  
-    // inicializo la variable number, que se accede por un hook. setNumber es una función que declaro para setearlo, pero podría ser cualquier cosa.
+    
+
+//    const q = query(collection(db, "productos")/*, where("position", "==", "lona")*/);
+    const q = query(collection(db, "productos"));
+    useEffect(() => {
+      const getProductos = async() => {
+        const querySnapshot = await getDocs(q);
+        querySnapshot.forEach((doc) => {
+          let objeto = {...doc.data(), id: doc.id}
+
+          docs.push( objeto);
+          
+        });     
+          setProductos(docs)
+      };
+      getProductos();
 
 
-
+    }, [])
+  
   return (
-    <Router>
-      <div className="App">
-        <NavBar numero={number} brand="AbajomojabA" />
-        <Header title="Abajo Mojaba" subtitle="Abajo Mojaba - Piletas de lona"/>
+    <Contexto.Provider value={[{productos, setProductos},{carrito, setCarrito}]}>
+      <Router>
+        <div className="App">
+          <NavBar brand="AbajomojabA" />
+          <Header title="Abajo Mojaba" subtitle="Abajo Mojaba"/>
 
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/contact" element={<Contact />} />
-          <Route path="/about" element={<About />} />
-          <Route path="user-detail/:id" element={<UserDetail />} />          
-        </Routes>
-      </div>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/contact" element={<Contact />} />
+            <Route path="/about" element={<About />} />
+            <Route path="user-detail/:id"  element={<UserDetail />} />          
+          </Routes>
+        </div>
 
-    </Router>
+      </Router>
+    </Contexto.Provider>
   );
 };
 export default App;
