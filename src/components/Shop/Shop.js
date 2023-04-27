@@ -7,7 +7,7 @@ import { Contexto } from "../../App";
 const  Shop = () => {
   let contexto = useContext(Contexto)
   let cantidadDeArticulosEnElCarrito = 0
-  cantidadDeArticulosEnElCarrito = contexto[1].carrito.length
+  cantidadDeArticulosEnElCarrito = 0 // contexto.carrito.length
  
  // console.log("casd", contexto)
   return (
@@ -21,7 +21,3 @@ const  Shop = () => {
 };
 
 export default Shop;
-    /*    <buton onClick={decrementar}> decrementar </buton>
-        <buton onClick={incrementar}> | incrementar </buton>
-        <buton onClick={inicializar}> | poner en ceroincrementar </buton>
-*/

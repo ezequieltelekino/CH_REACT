@@ -1,13 +1,17 @@
 import * as React from 'react';
 import {Card, CardContent, CardMedia, Typography, CardActionArea} from '@mui/material';
-const CardUser = ({data}) =>  {
+const CardProduct = ({data}) =>  {
+    if (data.img == undefined)
+        return(
+            <div>Artículo no encontrado</div>
+        );
+        
     return (
     <Card sx={{ maxWidth: 345 }} >
         <CardActionArea>
         <CardMedia
             component="img"
             height="140"
-
             image={data.img}
             alt="green iguana"
         /> 
@@ -22,6 +26,7 @@ const CardUser = ({data}) =>  {
         </CardActionArea>
     </Card>
     );
+
 }
-export default CardUser;
+export default CardProduct;
 
