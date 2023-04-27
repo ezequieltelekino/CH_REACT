@@ -2,9 +2,12 @@ import "./NavBar.css"
 import Shop from "../Shop/Shop"
 
 import { Link } from "react-router-dom";
+import { useContext } from "react";
+import { Contexto } from "../../App";
 
 const NavBar = ({brand}) => {
-  //setNumber(numero+1)
+  let contexto = useContext(Contexto)
+
   return (
     <nav className="Navigation">
       <ul className="List-ul">
@@ -18,7 +21,9 @@ const NavBar = ({brand}) => {
         <Link className="Link" to="/contact">
           Contact
         </Link>
-        <li><Shop/></li>
+        <li><Shop/></li>  
+        <li><span onClick={contexto.vaciarCarrito}>Vaciar Carrito</span> </li>
+
       </ul>
     </nav>
   );

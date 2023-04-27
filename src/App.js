@@ -28,6 +28,22 @@ const App = () => {
       
     const [productos, setProductos] = useState([])
     const [carrito, setCarrito] = useState([])
+
+    function agregarAlCarrito(data){
+      if(!carrito.some(prod => prod === data) ){
+        console.log("Agregando al carrito: ", data)
+        setCarrito(prev => [...prev, data,])
+      }else{
+        alert("Disculpe.\nEstamos trabajando en aceptar repetidos... de todos modos. ¿Dos piletas juntas? ¿Iguales?")
+      }
+    }
+
+    function vaciarCarrito(){
+        console.log("Vaciando al carrito: ")
+        setCarrito([])
+
+    }
+
     let docs = [];
 
     function existeEnElArray (id){
@@ -51,7 +67,7 @@ const App = () => {
     }, [])
   
   return (
-    <Contexto.Provider value={{productos, setProductos, carrito, setCarrito}}>
+    <Contexto.Provider value={{productos, setProductos, carrito, agregarAlCarrito, vaciarCarrito}}>
       <Router>
         <div className="App">
           <NavBar brand="AbajomojabA" />

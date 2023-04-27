@@ -4,7 +4,9 @@ import CardProduct from "../components/CardProduct/CardProduct";
 import { useContext } from "react";
 import { Contexto } from "../App";
 
+
 const DetalleProducto = () => {
+
     let contexto = useContext(Contexto)
     let {id} = useParams()
     let data = undefined;

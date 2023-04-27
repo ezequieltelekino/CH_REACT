@@ -13,10 +13,9 @@ const  Shop = () => {
   return (
     <div>
         <ShoppingCartCheckoutIcon sx={{color: "white"}}/>
-        <span>{cantidadDeArticulosEnElCarrito} </span>
-      
-
+        <span>{contexto.carrito.length} </span>
     </div>
+    
   );
 };
 
