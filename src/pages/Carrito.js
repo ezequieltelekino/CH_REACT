@@ -7,7 +7,7 @@ const Home = () => {
 
     return (
       <div>
-       <CardList mostrar={4} />   
+       <CardList />   
      </div>
     );
   };

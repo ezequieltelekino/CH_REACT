@@ -1,20 +1,19 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { useEffect } from "react";
-
 import NavBar from "./components/NavBar/NavBar";
 import Home from "./pages/Home";
 import Contact from "./pages/Contact";
-import About from "./pages/About";
+import Productos from "./pages/Productos";
 import DetalleProducto from "./pages/DetalleProducto"
 import './App.css';
-import React, {Component} from 'react';
+import React from 'react';
 
 // Importo mis componentes
 import Header from "./components/Header/Header";
 
 //firebase
 import { db } from "./firebase/firebaseConfig";
-import { collection, query, where, getDocs } from "firebase/firestore";
+import { collection, query, getDocs } from "firebase/firestore";
 import { createContext, useState } from "react";
 
 // context
@@ -28,42 +27,42 @@ const App = () => {
       
     const [productos, setProductos] = useState([])
     const [carrito, setCarrito] = useState([])
-
     function agregarAlCarrito(data){
+      data.cantidad++
       if(!carrito.some(prod => prod === data) ){
-        console.log("Agregando al carrito: ", data)
         setCarrito(prev => [...prev, data,])
-      }else{
-        alert("Disculpe.\nEstamos trabajando en aceptar repetidos... de todos modos. ¿Dos piletas juntas? ¿Iguales?")
       }
+      alert("Tenés " + data.cantidad + " unidades de \n«" + data.nombre + "» \n en el carrito")
     }
 
     function vaciarCarrito(){
         console.log("Vaciando al carrito: ")
+        carrito.forEach((producto) => {      
+          console.log("Eliminando " + producto.cantidad + " unidades de " + producto.nombre)   
+          producto.cantidad = 0 
+        })
         setCarrito([])
-
+        alert("0 unidades en el carrito")
     }
 
-    let docs = [];
+   
 
     function existeEnElArray (id){
       return docs.some(objeto => objeto.id === id)
     }
-
+    let docs = [];
     const q = query(collection(db, "productos"));
     useEffect(() => {
       const getProductos = async() => {
         const querySnapshot = await getDocs(q);
         querySnapshot.forEach((doc) => {
-          let objeto = {...doc.data(), id: doc.id}
+          let objeto = {...doc.data(), id: doc.id, cantidad:0}
           if (!existeEnElArray(doc.id)) //para evitar los duplicados
               docs.push(objeto);
         });     
           setProductos(docs)
       };
       getProductos();
-
-
     }, [])
   
   return (
@@ -75,7 +74,7 @@ const App = () => {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/contact" element={<Contact />} />
-            <Route path="/about" element={<About />} />
+            <Route path="/productos" element={<Productos />} />
             <Route path="detalle-producto/:id"  element={<DetalleProducto />} />          
           </Routes>
         </div>

@@ -15,8 +15,8 @@ const NavBar = ({brand}) => {
         <Link className="Link" to="/">
           Home
         </Link>
-        <Link className="Link" to="/about">
-          About
+        <Link className="Link" to="/productos">
+          Productos
         </Link>
         <Link className="Link" to="/contact">
           Contact
