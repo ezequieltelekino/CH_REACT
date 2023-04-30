@@ -1,16 +1,14 @@
-import CardList from "../components/CardList/CardList";
-import { collection, query, where, getDocs } from "firebase/firestore";
+import CardListCarrito from "../components/CardListCarrito/CardListCarrito";
 import {useState, useEffect} from 'react';
-import { db } from "../firebase/firebaseConfig";
 
-const Home = () => {
+const Carrito = () => {
 
     return (
       <div>
-       <CardList />   
+       <CardListCarrito />   
      </div>
     );
   };
   
-  export default Home;
+  export default Carrito;
   //

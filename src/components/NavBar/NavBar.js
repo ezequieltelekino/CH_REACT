@@ -21,7 +21,9 @@ const NavBar = ({brand}) => {
         <Link className="Link" to="/contact">
           Contact
         </Link>
-        <li><Shop/></li>  
+        <Link className="Link" to="/carrito">
+          <Shop/>
+        </Link>
         <li><span onClick={contexto.vaciarCarrito}>Vaciar Carrito</span> </li>
 
       </ul>

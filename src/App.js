@@ -5,6 +5,8 @@ import Home from "./pages/Home";
 import Contact from "./pages/Contact";
 import Productos from "./pages/Productos";
 import DetalleProducto from "./pages/DetalleProducto"
+import Carrito from "./pages/Carrito";
+
 import './App.css';
 import React from 'react';
 
@@ -74,6 +76,8 @@ const App = () => {
             <Route path="/" element={<Home />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/productos" element={<Productos />} />
+            <Route path="/carrito" element={<Carrito />} />
+
             <Route path="detalle-producto/:id"  element={<DetalleProducto />} />          
           </Routes>
         </div>
