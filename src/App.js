@@ -45,12 +45,11 @@ const App = () => {
         alert("0 unidades en el carrito")
     }
 
-   
+    let docs = [];
 
     function existeEnElArray (id){
       return docs.some(objeto => objeto.id === id)
     }
-    let docs = [];
     const q = query(collection(db, "productos"));
     useEffect(() => {
       const getProductos = async() => {
