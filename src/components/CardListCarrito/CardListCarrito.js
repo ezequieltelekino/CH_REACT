@@ -28,7 +28,7 @@ const CardListCarrito = () => {
 
                     return (
                         <div key={producto.id}>
-                                <CardProduct key={producto.id} data={producto}/>
+                                <CardProduct key={producto.id} data={producto} sePuedeAgregar={false}/>
                                 {producto.cantidad} {mensaje}:   
                                 ${producto.cantidad*producto.precio}
                         </div>

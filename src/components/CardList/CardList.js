@@ -26,7 +26,7 @@ const CardList = ({mostrar}) => {
             prods.map((producto) => {
                     return (
                         <div key={producto.id}>
-                                <CardProduct key={producto.id} data={producto}/>
+                                <CardProduct key={producto.id} data={producto} sePuedeAgregar={true}/>
                         </div>
                     );
                 }
