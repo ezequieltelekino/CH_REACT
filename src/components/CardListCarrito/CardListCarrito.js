@@ -9,9 +9,9 @@ const CardListCarrito = () => {
     const contenidoDelContexto = useContext(Contexto );
     let listaCompleta = contenidoDelContexto.carrito 
     let prods = []
-    console.log("Mostrando todos los elementos")
+    //console.log("Mostrando todos los elementos")
     prods = listaCompleta
-    console.log(prods)
+    //console.log(prods)
     let total = 0
 
     

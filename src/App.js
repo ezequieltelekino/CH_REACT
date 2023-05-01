@@ -2,7 +2,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { useEffect } from "react";
 import NavBar from "./components/NavBar/NavBar";
 import Home from "./pages/Home";
-import Contact from "./pages/Contact";
+import Comprar from "./pages/Comprar";
 
 import Categoria from "./pages/Categoria";
 import Productos from "./pages/Productos";
@@ -76,15 +76,14 @@ const App = () => {
     <Contexto.Provider value={{productos, setProductos, carrito, agregarAlCarrito, vaciarCarrito}}>
       <Router>
         <div className="App">
-          <NavBar brand="AbajomojabA" />
+          <NavBar marca="AbajomojabA" />
           <Header title="Abajo Mojaba" subtitle="Abajo Mojaba"/>
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/contact" element={<Contact />} />
+            <Route path="/comprar" element={<Comprar />} />
             <Route path="/productos" element={<Productos />} />
             <Route path="/carrito" element={<Carrito />} />
             <Route path="/categoria/:categoria"  element={<Categoria />} />          
-
             <Route path="detalle-producto/:id"  element={<DetalleProducto />} />          
           </Routes>
         </div>

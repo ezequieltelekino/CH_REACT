@@ -11,7 +11,6 @@ const CardProduct = ({data, sePuedeAgregar}) =>  {
         return(
             <div>Artículo no encontrado</div>
         );
-    
     if(sePuedeAgregar)
         
         return (

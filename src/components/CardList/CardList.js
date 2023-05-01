@@ -10,11 +10,11 @@ const CardList = ({mostrar}) => {
     let listaCompleta = contenidoDelContexto.productos 
     let prods = []
     if ( mostrar == 0 ){
-        console.log("Mostrando todos los elementos")
+        //console.log("Mostrando todos los elementos")
         prods = listaCompleta
         console.log(prods)
     }else{
-        console.log ("Mostando " + mostrar + " elementos")
+        //console.log ("Mostando " + mostrar + " elementos")
         for (let i = 0 ; i< mostrar && i < listaCompleta.length ; i++){
             prods.push (listaCompleta [i])
         }
