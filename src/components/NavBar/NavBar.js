@@ -57,7 +57,7 @@ console.log("Las categorias son", categorias)
 
             </div>
           </ul>
-        </li>
+           </li>
       </ul>
     </nav>
   );

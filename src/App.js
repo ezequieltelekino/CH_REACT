@@ -36,7 +36,11 @@ const App = () => {
       if(!carrito.some(prod => prod === data) ){
         setCarrito(prev => [...prev, data,])
       }
-      alert("Tenés " + data.cantidad + " unidades de \n«" + data.nombre + "» \n en el carrito")
+      let palabra=" unidades "
+      if (data.cantidad === 1)
+        palabra=" unidad "
+      alert("Tenés " + data.cantidad + palabra + "de \n«" + data.nombre + "» \n en el carrito")
+
     }
 
     function vaciarCarrito(){
