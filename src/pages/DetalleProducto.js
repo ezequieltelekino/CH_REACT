@@ -16,7 +16,6 @@ const DetalleProducto = () => {
         }
     })
     if (data === undefined){
-
         data={descripcion: "artículo no encontrado",
                position:"", 
                precio:0     

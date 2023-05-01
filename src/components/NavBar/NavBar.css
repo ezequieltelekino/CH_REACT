@@ -8,27 +8,25 @@ nav ul {
     justify-content: center;
 
 }
-nav ul li {
-    list-style: none;
-    margin: 0px;
-    border-color: gray;
-    border: 1px;
-
-    margin-left: 2rem;
-    padding-right: 2rem;
-    border-right: 2px solid grey;
-  } 
   
-  nav ul li:last-child {
-    border-right: none;
-  }
-  nav ul li a{
-    text-decoration: none;
-  } 
+nav ul li:last-child {
+  border-right: none;
+}
+nav ul li a{
+  text-decoration: none;
+} 
 
-  nav ul li h1{
-    display: inline;
-    color: rgb(10, 0, 156);
-    font-style: bold;
-    font-size: 2rem;
-  } 
+nav ul li h1{
+  display: inline;
+  color: rgb(10, 0, 156);
+  font-style: bold;
+  font-size: 2rem;
+} 
+
+
+.menu-vertical {
+  width: 150px;
+  height: 4.5rem;
+  overflow-y:scroll;
+}
+

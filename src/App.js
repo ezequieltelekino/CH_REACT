@@ -3,6 +3,8 @@ import { useEffect } from "react";
 import NavBar from "./components/NavBar/NavBar";
 import Home from "./pages/Home";
 import Contact from "./pages/Contact";
+
+import Categoria from "./pages/Categoria";
 import Productos from "./pages/Productos";
 import DetalleProducto from "./pages/DetalleProducto"
 import Carrito from "./pages/Carrito";
@@ -77,6 +79,7 @@ const App = () => {
             <Route path="/contact" element={<Contact />} />
             <Route path="/productos" element={<Productos />} />
             <Route path="/carrito" element={<Carrito />} />
+            <Route path="/categoria/:categoria"  element={<Categoria />} />          
 
             <Route path="detalle-producto/:id"  element={<DetalleProducto />} />          
           </Routes>
