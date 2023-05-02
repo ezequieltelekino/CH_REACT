@@ -1,14 +1,11 @@
 import "./Comprar.css";
-import { FormControl } from '@mui/material';
 import { TextField } from '@mui/material';
-import { Input } from '@mui/material';
-import { FormHelperText } from '@mui/material';
-import { Button } from '@mui/material';
 import {useState}  from "react";
-
 import { useContext } from "react";
 import { Contexto } from "../App";
-
+//firebase
+import { db } from "../firebase/firebaseConfig";
+import { collection, addDoc, getDocs } from "firebase/firestore";
 const estadoInicial = {
   nombre:"",
   email:""
@@ -24,11 +21,20 @@ const Comprar = () => {
     console.log(e.target.name)
   }
 
-  const onSubmit = (e) => {
+  const onSubmit = async (e) => {
     e.preventDefault();
-    console.log("Comprando!", contexto.carrito)
-    console.log(values)
+    console.log("Comprando!", contexto.carrito);
+    console.log(values);
+    const carrito = contexto.carrito
+    const docRef = await addDoc(collection(db, "compras"), {
+     values,
+     carrito
+    });
+    console.log("El id de la transacción es " + docRef.id)
+    alert("El id de la transacción es " + docRef.id)
+
   }
+
 
   if (contexto.carrito.length == 0)
     return(
@@ -63,18 +69,3 @@ const Comprar = () => {
   };
   
   export default Comprar;
-  /*  
-      <form id="formulario-compra" className="form">
-      <h4>Ingrese sus datos</h4>
-        <p id="nombre" type="text"><input placeholder="Ingrese su nombre"></input></p>
-        <p id="apellido" type="text"><input placeholder="Ingese su apellido"></input></p>
-        <p id="email" type="text"><input placeholder="Ingrese su correo electrónico"></input></p>
-        <div className="boton-comprar" onClick={comprar} >Comprar!</div>
-      </form>*/
-
-      /*      <FormControl>
-        <InputLabel htmlFor="my-input">email</InputLabel>
-        <Input id="formulario-compra" aria-describedby="my-helper-text" />
-        <FormHelperText id="my-helper-text">Ingrese su email.</FormHelperText>
-        <Button onClick={comprar}>Comprar</Button>
-      </FormControl>*/
