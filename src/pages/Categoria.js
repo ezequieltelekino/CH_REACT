@@ -25,7 +25,7 @@ const Categoria = () => {
         prods.map((producto) => {
                 return (
                     <div key={producto.id}>
-                            <CardProduct key={producto.id} data={producto} sePuedeAgregar={true}/>
+                            <CardProduct key={producto.id} data={producto} esCarrito={false}/>
                     </div>
                 );
             }

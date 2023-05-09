@@ -3,15 +3,17 @@ import {Card, CardContent, CardMedia, Typography, CardActionArea} from '@mui/mat
 import { Link } from "react-router-dom";
 import { useContext } from "react";
 import { Contexto } from '../../App';
+import Button from '@mui/material/Button';
 
-const CardProduct = ({data, sePuedeAgregar}) =>  {
+
+const CardProduct = ({data, esCarrito, subtexto}) =>  {
     const contexto = useContext(Contexto)
 
     if (data.img == undefined)
         return(
             <div>Artículo no encontrado</div>
         );
-    if(sePuedeAgregar)
+    if(!esCarrito)
         
         return (
             <Card sx={{ maxWidth: 345 }} >
@@ -46,7 +48,7 @@ const CardProduct = ({data, sePuedeAgregar}) =>  {
             <Link to={`/detalle-producto/${data.id}`}>
                 <CardMedia
                     component="img"
-                    height="140"
+                    height="200"
                     image={data.img}
                     alt="green iguana"
                 /> 
@@ -55,13 +57,17 @@ const CardProduct = ({data, sePuedeAgregar}) =>  {
                 <Typography gutterBottom variant="h5" component="div">
                     {data.nombre}
                 </Typography>
+
                 <Typography variant="body2" color="text.secondary">
-                    ${data.precio}
+                    {subtexto}
                 </Typography>
+                
             </CardContent>
+
             </CardActionArea>
+            <Button onClick={ () => {contexto.decrementar(data);} } variant="contained">-</Button>
+            <Button onClick={ () => {contexto.incrementar(data);} } variant="outlined">+</Button>
         </Card>
         );
 }
 export default CardProduct;
-

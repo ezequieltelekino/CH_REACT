@@ -28,5 +28,25 @@ nav ul li h1{
   width: 150px;
   height: 4.5rem;
   overflow-y:scroll;
+
 }
 
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #c40bc4;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #048ece;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}

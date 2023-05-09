@@ -7,9 +7,8 @@ import { Contexto } from "../../App";
 const  Shop = () => {
   let contexto = useContext(Contexto)
   let cantidadDeArticulosEnElCarrito = 0
-  cantidadDeArticulosEnElCarrito = 0 // contexto.carrito.length
+  cantidadDeArticulosEnElCarrito = 0 
  
- // console.log("casd", contexto)
   return (
     <div>
         <ShoppingCartCheckoutIcon sx={{color: "white"}}/>

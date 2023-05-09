@@ -11,6 +11,8 @@ import Carrito from "./pages/Carrito";
 
 import './App.css';
 import React from 'react';
+import Swal from 'sweetalert2'
+import withReactContent from 'sweetalert2-react-content'
 
 // Importo mis componentes
 import Header from "./components/Header/Header";
@@ -28,30 +30,78 @@ import { createContext, useState } from "react";
 export const Contexto = createContext("valor inicial del provider, no debería verse en ningún lugar porque todo está dentro del context");
 
 const App = () => {
-      
+
     const [productos, setProductos] = useState([])
     const [carrito, setCarrito] = useState([])
+    const MySwal = withReactContent(Swal)
+
+
     function agregarAlCarrito(data){
       data.cantidad++
       if(!carrito.some(prod => prod === data) ){
-        setCarrito(prev => [...prev, data,])
+        setCarrito(prev => [...prev, data,].sort((a,b) => a.precio - b.precio)
+        )
       }
       let palabra=" unidades "
       if (data.cantidad === 1)
         palabra=" unidad "
-      alert("Tenés " + data.cantidad + palabra + "de \n«" + data.nombre + "» \n en el carrito")
+
+
+
+        MySwal.fire({
+          title: <p>Tenés {data.cantidad} {palabra} de « {data.nombre} » en el carrito</p>,
+        })
 
     }
 
+    function incrementar(data){
+      let carritoTemporal = []
+      
+      carrito.forEach((producto) => {   
+        if (producto.id != data.id)   
+          carritoTemporal.push(producto)
+      })
+      
+      data.cantidad++
+      if (data.cantidad>0)
+        carritoTemporal.push(data)
+      carritoTemporal.sort((a,b) => a.precio - b.precio)
+      setCarrito(carritoTemporal)
+    }
+
+    function decrementar(data){
+      let carritoTemporal = []
+      
+      carrito.forEach((producto) => {   
+        if (producto.id != data.id)   
+          carritoTemporal.push(producto)
+      })
+      if (data.cantidad>0)
+            data.cantidad--
+      if (data.cantidad>0)
+        carritoTemporal.push(data)
+        carritoTemporal.sort((a,b) => a.precio - b.precio)
+
+      setCarrito(carritoTemporal)
+    }
+
     function vaciarCarrito(){
-        console.log("Vaciando al carrito: ")
         carrito.forEach((producto) => {      
           console.log("Eliminando " + producto.cantidad + " unidades de " + producto.nombre)   
           producto.cantidad = 0 
         })
         setCarrito([])
-        alert("0 unidades en el carrito")
+          MySwal.fire({
+            title: <p>0 unidades en el carrito</p>,
+          })
     }
+
+    function vaciarCarritoEnSilencio(){
+      carrito.forEach((producto) => {      
+        producto.cantidad = 0 
+      })
+      setCarrito([])
+  }
 
     let docs = [];
 
@@ -73,7 +123,7 @@ const App = () => {
     }, [])
   
   return (
-    <Contexto.Provider value={{productos, setProductos, carrito, agregarAlCarrito, vaciarCarrito}}>
+    <Contexto.Provider value={{productos, setProductos, carrito, agregarAlCarrito, vaciarCarrito, incrementar, decrementar, vaciarCarritoEnSilencio}}>
       <Router>
         <div className="App">
           <NavBar marca="AbajomojabA" />
